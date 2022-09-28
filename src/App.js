@@ -1,23 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect  } from "react";
 
 function App() {
+
+  const [dog,setDog] = useState("");
+
+  useEffect(() => {
+    verMascota();
+  }, []);
+
+  function verMascota() {
+    fetch("https://dog.ceo/api/breeds/image/random")
+    .then(response => {
+      return response.json()
+    })
+    .then(dog => {
+      const dog_image = dog.message;
+      setDog(dog_image);
+    });
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h4>{dog}</h4>
+      <hr/>
+      <img width="300px" src={dog} />
+      <hr/>
+      <button onClick={()=> verMascota()} className="btn btn-primary" >Ver nueva mascota</button>
     </div>
   );
 }
