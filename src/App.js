@@ -39,9 +39,11 @@ function App() {
     <div className="App">
       <br/>
       <button onClick={()=> verMascota()} className="btn btn-lg btn-primary" >Ver nueva mascota 🐶</button>
-      <hr/>
-      <img width="400px" src={dog} />
-      <hr/>
+
+      <div className="bg_bones">
+       <img width="400px" src={dog} />
+      </div>
+      
       <h2 style={{color: randomColor}}>{raza}</h2>
       <p className="color_url_file">File: {dog}</p>
     </div>
