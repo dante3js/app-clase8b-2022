@@ -4,6 +4,8 @@ import { useState, useEffect  } from "react";
 function App() {
 
   const [dog,setDog] = useState("");
+  const [raza,setRaza] = useState("");
+  const [randomColor,setRandomColor] = useState("");
 
   useEffect(() => {
     verMascota();
@@ -17,8 +19,21 @@ function App() {
     .then(dog => {
       const dog_image = dog.message;
       setDog(dog_image);
+      razaFromImageUrl(dog_image);
     });
   }
+
+  function razaFromImageUrl(x) {
+    let raza = x.split("https://images.dog.ceo/breeds/");
+    raza = raza[1];
+    raza = raza.split("/");
+    raza = raza[0];
+    setRaza(raza);
+
+    let rColor = "#000000".replace(/0/g,function(){return (~~(Math.random()*16)).toString(16);});
+    setRandomColor(rColor);
+  }
+
 
   return (
     <div className="App">
@@ -27,7 +42,8 @@ function App() {
       <hr/>
       <img width="400px" src={dog} />
       <hr/>
-      <p>File: {dog}</p>
+      <h2 style={{color: randomColor}}>{raza}</h2>
+      <p className="color_url_file">File: {dog}</p>
     </div>
   );
 }

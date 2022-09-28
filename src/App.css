@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');
+
 .App {
   text-align: center;
 }
@@ -35,4 +37,15 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.color_url_file {
+  color: #999999;
+  font-size: 0.9em;
+}
+
+h2 {
+  font-size: 60px;
+  font-family: 'Gochi Hand', cursive;
+  color: #9B6213;
 }
