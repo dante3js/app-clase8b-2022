@@ -22,11 +22,12 @@ function App() {
 
   return (
     <div className="App">
-      <h4>{dog}</h4>
+      <br/>
+      <button onClick={()=> verMascota()} className="btn btn-lg btn-primary" >Ver nueva mascota 🐶</button>
       <hr/>
-      <img width="300px" src={dog} />
+      <img width="400px" src={dog} />
       <hr/>
-      <button onClick={()=> verMascota()} className="btn btn-primary" >Ver nueva mascota</button>
+      <p>File: {dog}</p>
     </div>
   );
 }
