@@ -48,6 +48,7 @@ h2 {
   font-size: 60px;
   font-family: 'Gochi Hand', cursive;
   color: #9B6213;
+  text-transform:capitalize;
 }
 
 .bg_bones {

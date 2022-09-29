@@ -36,6 +36,7 @@ function App() {
     raza = raza[1];
     raza = raza.split("/");
     raza = raza[0];
+    raza = raza.replace(/-/, ' ');
     setRaza(raza);
 
     let rColor = "#000000".replace(/0/g,function(){return (~~(Math.random()*16)).toString(16);});
