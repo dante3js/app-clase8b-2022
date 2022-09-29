@@ -57,3 +57,12 @@ h2 {
   border-bottom: 1px solid #eeeeee;
   border-top: 1px solid #eeeeee;
 }
+
+.form-select {
+  width: 40%;
+  margin: 0px auto;
+}
+
+.btn_cambia {
+  margin: 10px;
+}

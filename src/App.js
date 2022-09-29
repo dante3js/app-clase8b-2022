@@ -1,18 +1,25 @@
 import './App.css';
 import { useState, useEffect  } from "react";
+import { Spinner } from 'reactstrap';
+import SelectRaza from "./raza/SelectRaza";
+
 
 function App() {
 
   const [dog,setDog] = useState("");
+  const [loading,setLoading] = useState("");
   const [raza,setRaza] = useState("");
   const [randomColor,setRandomColor] = useState("");
+  const [urlApi,setUrlApi] = useState("breeds/image");
 
   useEffect(() => {
     verMascota();
-  }, []);
+  }, [urlApi]);
 
   function verMascota() {
-    fetch("https://dog.ceo/api/breeds/image/random")
+    setLoading(true);
+    let url = `https://dog.ceo/api/${urlApi}/random`;
+    fetch(url)
     .then(response => {
       return response.json()
     })
@@ -20,6 +27,7 @@ function App() {
       const dog_image = dog.message;
       setDog(dog_image);
       razaFromImageUrl(dog_image);
+      setLoading(false);
     });
   }
 
@@ -38,12 +46,16 @@ function App() {
   return (
     <div className="App">
       <br/>
-      <button onClick={()=> verMascota()} className="btn btn-lg btn-primary" >Ver nueva mascota 🐶</button>
+      <SelectRaza urlApi={urlApi} setUrlApi={setUrlApi}></SelectRaza>
 
-      <div className="bg_bones">
-       <img width="400px" src={dog} />
+      <div className="btn_cambia">
+        <button onClick={()=> verMascota()} className="btn btn-lg btn-primary" >Ver nueva mascota {urlApi!="breeds/image" && raza} 🐶</button>
       </div>
-      
+      <div className="bg_bones">
+        {loading && (<div><Spinner type="border" color="success" /></div>)}
+        <img width="400px" src={dog} />
+      </div>
+
       <h2 style={{color: randomColor}}>{raza}</h2>
       <p className="color_url_file">File: {dog}</p>
     </div>
