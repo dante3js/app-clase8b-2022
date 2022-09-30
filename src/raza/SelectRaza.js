@@ -4,6 +4,9 @@ export default function SelectRaza({urlApi,setUrlApi}) {
 
   const [lists, setLists] = useState("");
 
+
+
+
   useEffect(() => {
 
   fetch("https://dog.ceo/api/breeds/list/all")
@@ -41,16 +44,9 @@ export default function SelectRaza({urlApi,setUrlApi}) {
 
 }, []);
 
-
-  function verRaza() {
-    let url = document.getElementById("selector_raza").value;
-    setUrlApi(url);
-  }
-
-
-  return (
+return (
     <>
-      <select className="form-select" id="selector_raza"  onChange={()=> verRaza()} >
+      <select className="form-select" onChange={(e) => setUrlApi(e.target.value)} >
         <option value="breeds/image" >Todas las razas</option >
         {lists}
       </select>
